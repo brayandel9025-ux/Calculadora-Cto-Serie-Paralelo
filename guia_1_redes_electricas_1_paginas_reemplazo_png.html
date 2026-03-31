@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guía 1 · Redes Eléctricas 1 · Ley de Ohm (CC) · Paginada (con reemplazo de esquemas)</title>
+<style>
+  :root{ --primary:#E10600; --ink:#111; --muted:#6b6f76; --line:#efeff1; --bg:#fff; --shadow:0 8px 24px rgba(0,0,0,.08); --radius:18px; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial}
+  .wrap{max-width:1100px;margin:32px auto;padding:0 20px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:44px;height:44px;border-radius:12px;background:radial-gradient(120% 120% at 20% 20%, rgba(225,6,0,.18), transparent 40%), #000;position:relative;box-shadow:var(--shadow)}
+  .logo::after{content:"";position:absolute;inset:8px;border-radius:10px;background:linear-gradient(135deg, var(--primary) 0%, #000 100%);mix-blend:screen;opacity:.9}
+  h1{font-weight:800;font-size:1.35rem;margin:0}
+  .sub{color:var(--muted);font-size:.94rem}
+  .top-actions{display:flex;gap:10px;flex-wrap:wrap}
+  button{appearance:none;border:1px solid #0000;background:var(--ink);color:#fff;padding:9px 13px;border-radius:14px;cursor:pointer;font-weight:700;box-shadow:var(--shadow)}
+  button.secondary{background:#fff;color:var(--ink);border:1px solid #00000022}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .tab{border:1px solid var(--line);background:#fff;color:#2b2f36;padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:800}
+  .tab.active{background:rgba(225,6,0,.08);color:var(--primary);border-color:rgba(225,6,0,.25)}
+  .page{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+  .page h2{margin:0 0 6px 0;font-size:1.12rem}
+  .hr{height:1px;background:var(--line);margin:10px 0}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .field{display:flex;flex-direction:column;gap:8px;flex:1;min-width:170px}
+  label{font-size:.92rem;color:#2b2f36;font-weight:700}
+  input[type="number"]{width:100%;padding:12px;border-radius:12px;border:1px solid #e7e7ea;font-size:1rem;background:#fff}
+  input[type="file"]{display:none}
+  .uploader{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px dashed #d9dbe1;border-radius:14px;padding:10px 12px}
+  .uploader .info{font-size:.9rem;color:#4a4f57}
+  .uploader .btn{background:#fff;color:var(--primary);border:1px solid rgba(225,6,0,.35);padding:8px 10px;border-radius:10px;font-weight:800;cursor:pointer}
+  figure.scheme{margin:8px 0 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  figure.scheme img, figure.scheme svg{width:100%;height:auto;display:block}
+  figure.scheme figcaption{padding:8px 10px;color:#4a4f57;font-size:.9rem;border-top:1px solid var(--line)}
+  .score{font-weight:800;color:var(--ink);background:#fff;border:1px solid var(--line);padding:8px 10px;border-radius:12px}
+  .ok{border-color:rgba(15,169,88,.8)!important;box-shadow:0 0 0 4px rgba(15,169,88,.12)!important}
+  .bad{border-color:rgba(217,48,37,.9)!important;box-shadow:0 0 0 4px rgba(217,48,37,.15)!important}
+  .hint{color:var(--muted);font-size:.9rem}
+  .footer{margin-top:8px;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .sig{margin-top:8px;padding:10px 12px;border:1px dashed #e6e6ea;border-radius:12px;background:#fff}
+  @media print{ header, .tabs, .uploader, .print-hide{display:none!important} .page{box-shadow:none;border-color:#ddd;page-break-after:always} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Guía 1 · Redes Eléctricas 1 — Ley de Ohm (CC)</h1>
+          <div class="sub">Paginada: Introducción · Serie · Paralelo · Mixto</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="secondary" id="btnImprimir">🖨️ Imprimir</button>
+        <button id="btnReiniciar">🔄 Reiniciar todo</button>
+      </div>
+    </header>
+
+    <nav class="tabs print-hide">
+      <button class="tab active" data-target="p1">1) Introducción</button>
+      <button class="tab" data-target="p2">2) Serie</button>
+      <button class="tab" data-target="p3">3) Paralelo</button>
+      <button class="tab" data-target="p4">4) Mixto</button>
+    </nav>
+
+    <!-- Página 1 -->
+    <section class="page" id="p1">
+      <h2>Introducción — Ley de Ohm y Potencia eléctrica</h2>
+      <div class="hr"></div>
+      <p class="hint">Esta guía permite reemplazar los esquemas por <strong>imágenes PNG</strong> propias, manteniendo la interactividad de los ejercicios.</p>
+      <div class="hr"></div>
+      <h3>Calculadora universal (ingresa 2 variables)</h3>
+      <div class="row" id="calcOhm">
+        <div class="field"><label for="V">Voltaje (V)</label><input type="number" step="any" id="V" placeholder="Ej: 12"></div>
+        <div class="field"><label for="I">Corriente (A)</label><input type="number" step="any" id="I" placeholder="Ej: 0.5"></div>
+        <div class="field"><label for="R">Resistencia (Ω)</label><input type="number" step="any" id="R" placeholder="Ej: 24"></div>
+        <div class="field"><label for="P">Potencia (W)</label><input type="number" step="any" id="P" placeholder="Ej: 6"></div>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="btnCalcular" class="secondary">Calcular</button>
+        <button id="btnLimpiar" class="secondary">Limpiar</button>
+      </div>
+      <div class="footer">
+        <div>© <span id="year"></span> Guía 1 · Redes Eléctricas 1 · Ley de Ohm (CC)</div>
+        <div class="sig"><strong>Pie de firma:</strong> Brayan Del Valle, Docente Área Electricidad, Sede Inacap Chillán</div>
+      </div>
+    </section>
+
+    <!-- Página 2: Serie -->
+    <section class="page" id="p2" style="display:none">
+      <h2>Página 2 — Circuito en Serie</h2>
+      <div class="hr"></div>
+      <div class="uploader">
+        <div class="info">Sube aquí tu <strong>esquema PNG</strong> para <em>Serie</em> (ratio recomendado 16:6 ~ 640×240 px, fondo transparente opcional)</div>
+        <label class="btn" for="fileSerie">📁 Cargar PNG</label>
+        <input type="file" id="fileSerie" accept="image/png" />
+      </div>
+      <figure class="scheme" id="figSerie">
+        <img id="imgSerie" alt="Esquema serie" style="display:none"/>
+        <svg viewBox="0 0 640 220" id="svgSerie"></svg>
+        <figcaption>Esquema: Serie</figcaption>
+      </figure>
+
+      <div class="row" style="margin-top:10px">
+        <div class="field"><label>Tensión de fuente (V)</label><input type="number" id="VsSerie" readonly></div>
+        <div class="field"><label>Número de resistencias</label><input type="number" id="nSerie" readonly></div>
+      </div>
+      <div id="resistoresSerie" class="row" style="margin-top:10px"></div>
+      <div class="hr"></div>
+      <div class="row">
+        <div class="field"><label>R<sub>eq</sub> (Ω)</label><input type="number" step="any" id="ReqSerie"></div>
+        <div class="field"><label>I<sub>total</sub> (A)</label><input type="number" step="any" id="ISerie"></div>
+      </div>
+      <div class="hr"></div>
+      <div id="dropsSerie" class="row"></div>
+      <div class="row" style="margin-top:12px">
+        <button id="btnNuevoSerie" class="secondary">🎲 Nuevo ejercicio</button>
+        <button id="btnRevisarSerie" class="secondary">✅ Revisar</button>
+        <span class="score" id="scoreSerie">Puntaje: —</span>
+      </div>
+      <details style="margin-top:10px"><summary>Ver solución paso a paso</summary><div id="solSerie" class="hint"></div></details>
+    </section>
+
+    <!-- Página 3: Paralelo -->
+    <section class="page" id="p3" style="display:none">
+      <h2>Página 3 — Circuito en Paralelo</h2>
+      <div class="hr"></div>
+      <div class="uploader">
+        <div class="info">Sube tu <strong>esquema PNG</strong> para <em>Paralelo</em> (ratio 16:6 ~ 640×240 px)</div>
+        <label class="btn" for="filePar">📁 Cargar PNG</label>
+        <input type="file" id="filePar" accept="image/png" />
+      </div>
+      <figure class="scheme" id="figPar">
+        <img id="imgPar" alt="Esquema paralelo" style="display:none"/>
+        <svg viewBox="0 0 640 220" id="svgPar"></svg>
+        <figcaption>Esquema: Paralelo</figcaption>
+      </figure>
+
+      <div class="row" style="margin-top:10px">
+        <div class="field"><label>Tensión de fuente (V)</label><input type="number" id="VsPar" readonly></div>
+        <div class="field"><label>Número de ramas</label><input type="number" id="nPar" readonly></div>
+      </div>
+      <div id="resistoresPar" class="row" style="margin-top:10px"></div>
+      <div class="hr"></div>
+      <div class="row">
+        <div class="field"><label>R<sub>eq</sub> (Ω)</label><input type="number" step="any" id="ReqPar"></div>
+        <div class="field"><label>I<sub>total</sub> (A)</label><input type="number" step="any" id="IParTotal"></div>
+      </div>
+      <div class="hr"></div>
+      <div id="corrientesPar" class="row"></div>
+      <div class="row" style="margin-top:12px">
+        <button id="btnNuevoPar" class="secondary">🎲 Nuevo ejercicio</button>
+        <button id="btnRevisarPar" class="secondary">✅ Revisar</button>
+        <span class="score" id="scorePar">Puntaje: —</span>
+      </div>
+      <details style="margin-top:10px"><summary>Ver solución paso a paso</summary><div id="solPar" class="hint"></div></details>
+    </section>
+
+    <!-- Página 4: Mixto -->
+    <section class="page" id="p4" style="display:none">
+      <h2>Página 4 — Mixto: R1 en serie con (R2 ∥ R3)</h2>
+      <div class="hr"></div>
+      <div class="uploader">
+        <div class="info">Sube tu <strong>esquema PNG</strong> para <em>Mixto</em> (ratio 16:6 ~ 640×240 px)</div>
+        <label class="btn" for="fileMix">📁 Cargar PNG</label>
+        <input type="file" id="fileMix" accept="image/png" />
+      </div>
+      <figure class="scheme" id="figMix">
+        <img id="imgMix" alt="Esquema mixto" style="display:none"/>
+        <svg viewBox="0 0 640 240" id="svgMix"></svg>
+        <figcaption>Esquema: Mixto (R1 + (R2 ∥ R3))</figcaption>
+      </figure>
+
+      <div class="row" style="margin-top:10px">
+        <div class="field"><label>Tensión de fuente (V)</label><input type="number" id="VsMix" readonly></div>
+        <div class="field"><label>R1 (Ω)</label><input type="number" id="R1Mix" readonly></div>
+        <div class="field"><label>R2 (Ω)</label><input type="number" id="R2Mix" readonly></div>
+        <div class="field"><label>R3 (Ω)</label><input type="number" id="R3Mix" readonly></div>
+      </div>
+
+      <div class="hr"></div>
+      <div class="row">
+        <div class="field"><label>R<sub>eq</sub> (Ω)</label><input type="number" step="any" id="ReqMix"></div>
+        <div class="field"><label>I<sub>total</sub> (A)</label><input type="number" step="any" id="IMix"></div>
+        <div class="field"><label>V<sub>R1</sub> (V)</label><input type="number" step="any" id="V1Mix"></div>
+        <div class="field"><label>V<sub>paralelo</sub> (V)</label><input type="number" step="any" id="VPmix"></div>
+        <div class="field"><label>I<sub>R2</sub> (A)</label><input type="number" step="any" id="I2Mix"></div>
+        <div class="field"><label>I<sub>R3</sub> (A)</label><input type="number" step="any" id="I3Mix"></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button id="btnNuevoMix" class="secondary">🎲 Nuevo desafío</button>
+        <button id="btnRevisarMix" class="secondary">✅ Revisar</button>
+        <span class="score" id="scoreMix">Puntaje: —</span>
+      </div>
+      <details style="margin-top:10px"><summary>Ver solución paso a paso</summary><div id="solMix" class="hint"></div></details>
+    </section>
+
+  </div>
+
+<script>
+  // Navegación
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('active')); tab.classList.add('active');
+    const tgt = tab.getAttribute('data-target');
+    document.querySelectorAll('.page').forEach(p=> p.style.display = (p.id===tgt?'':'none'));
+  }));
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('btnImprimir').addEventListener('click', ()=> window.print());
+  document.getElementById('btnReiniciar').addEventListener('click', ()=>{ location.reload(); });
+
+  // Utilidades cálculo
+  const byId = id=> document.getElementById(id);
+  const sum = arr=> arr.reduce((a,b)=>a+b,0);
+  const fmt = x=>{ if(!isFinite(x)) return '—'; const ax=Math.abs(x); if(ax===0) return '0'; if(ax<0.01||ax>=1e4) return x.toExponential(3).replace('e','×10^'); return Number(x.toPrecision(4)).toString(); };
+  const withinTol=(u,t)=>{ if(!isFinite(u)||!isFinite(t)) return false; const abs=0.01, rel=0.02; const d=Math.abs(u-t); if(Math.abs(t)<0.5) return d<=abs; return d/Math.abs(t)<=rel; };
+
+  // Calculadora
+  byId('btnCalcular').addEventListener('click', ()=>{
+    const V=parseFloat(byId('V').value), I=parseFloat(byId('I').value), R=parseFloat(byId('R').value), P=parseFloat(byId('P').value);
+    const k={V:!isNaN(V),I:!isNaN(I),R:!isNaN(R),P:!isNaN(P)}; let v=V,i=I,r=R,p=P;
+    if(Object.values(k).filter(Boolean).length<2){ alert('Ingresa al menos 2 variables'); return; }
+    if(k.V&&k.I){ r=v/i; p=v*i; } else if(k.V&&k.R){ i=v/r; p=v*v/r; } else if(k.V&&k.P){ i=p/v; r=v*v/p; } else if(k.I&&k.R){ v=i*r; p=i*i*r; } else if(k.I&&k.P){ v=p/i; r=p/(i*i); } else if(k.R&&k.P){ i=Math.sqrt(p/r); v=i*r; }
+    byId('V').value=isFinite(v)?Number(v.toPrecision(6)):'';
+    byId('I').value=isFinite(i)?Number(i.toPrecision(6)):'';
+    byId('R').value=isFinite(r)?Number(r.toPrecision(6)):'';
+    byId('P').value=isFinite(p)?Number(p.toPrecision(6)):'';
+  });
+  byId('btnLimpiar').addEventListener('click', ()=>{ ['V','I','R','P'].forEach(id=> byId(id).value=''); });
+
+  // Datos y generadores
+  const Evals=[22,33,47,68,82,100,150,220,330,470,680,820,1000,1500,2200,3300,4700,6800];
+  const VsSet=[5,6,9,12,15,24];
+  const rnd = arr=> arr[Math.floor(Math.random()*arr.length)];
+  const rndInt=(a,b)=> Math.floor(Math.random()*(b-a+1))+a;
+  const seriesReq = R=> R.reduce((a,b)=>a+b,0);
+  const parallelReq = R=> 1 / R.reduce((a,b)=> a + 1/b, 0);
+  function genSerie(){ const n=rndInt(2,4); const Vs=rnd(VsSet); const R=Array.from({length:n},()=>rnd(Evals)); const Req=seriesReq(R); const I=Vs/Req; const Vdrops=R.map(r=>I*r); const Ptot=Vs*I; const Pk=R.map(r=>I*I*r); return {Vs,n,R,Req,I,Vdrops,Ptot,Pk}; }
+  function genParalelo(){ const n=rndInt(2,4); const Vs=rnd(VsSet); const R=Array.from({length:n},()=>rnd(Evals)); const Req=parallelReq(R); const Ik=R.map(r=>Vs/r); const Itot=sum(Ik); const Ptot=Vs*Itot; const Pk=Ik.map(i=>Vs*i); return {Vs,n,R,Req,Ik,Itot,Ptot,Pk}; }
+  function genMixto(){ const Vs=rnd(VsSet); let R1=rnd(Evals),R2=rnd(Evals),R3=rnd(Evals); if(R2===R3) R3=rnd(Evals); const Rp=1/(1/R2+1/R3); const Req=R1+Rp; const I=Vs/Req; const V1=I*R1; const Vp=Vs-V1; const I2=Vp/R2; const I3=Vp/R3; return {Vs,R1,R2,R3,Rp,Req,I,V1,Vp,I2,I3}; }
+
+  // Render ejercicios (mantiene valores y validación; el esquema por defecto puede ser un SVG vacío)
+  let S=null,P=null,M=null;
+  function paintSerie(){ S=genSerie(); byId('VsSerie').value=S.Vs; byId('nSerie').value=S.n; const cont=byId('resistoresSerie'); cont.innerHTML=''; S.R.forEach((r,i)=>{ const d=document.createElement('div'); d.className='field'; d.innerHTML=`<label>R${i+1} (Ω)</label><input type="number" value="${r}" readonly>`; cont.appendChild(d); }); const drops=byId('dropsSerie'); drops.innerHTML=''; S.R.forEach((_,i)=>{ const d=document.createElement('div'); d.className='field'; d.innerHTML=`<label>V<sub>R${i+1}</sub> (V)</label><input type="number" step="any" id="VdropS${i}">`; drops.appendChild(d); }); byId('scoreSerie').textContent='Puntaje: —'; byId('solSerie').innerHTML=''; ['ReqSerie','ISerie'].forEach(id=>{ byId(id).value=''; byId(id).classList.remove('ok','bad'); }); }
+  function revisarSerie(){ const reqUsr=parseFloat(byId('ReqSerie').value), iUsr=parseFloat(byId('ISerie').value); const reqOK=withinTol(reqUsr,S.Req), iOK=withinTol(iUsr,S.I); byId('ReqSerie').classList.toggle('ok',reqOK); byId('ReqSerie').classList.toggle('bad',!reqOK); byId('ISerie').classList.toggle('ok',iOK); byId('ISerie').classList.toggle('bad',!iOK); let c=(reqOK?1:0)+(iOK?1:0), t=2; S.Vdrops.forEach((v,i)=>{ const el=byId(`VdropS${i}`); const u=parseFloat(el.value); const ok=withinTol(u,v); el.classList.toggle('ok',ok); el.classList.toggle('bad',!ok); if(ok) c++; t++; }); byId('scoreSerie').textContent=`Puntaje: ${c}/${t}`; byId('solSerie').innerHTML=`<p><strong>Paso 1:</strong> R_eq = ${S.R.join(' + ')} = <strong>${fmt(S.Req)} Ω</strong></p><p><strong>Paso 2:</strong> I = V/R = ${S.Vs}/${fmt(S.Req)} = <strong>${fmt(S.I)} A</strong></p><p><strong>Paso 3:</strong> V_Ri = I·R_i → ${S.R.map((r,i)=>`V_R${i+1} = ${fmt(S.I)}·${r} = <strong>${fmt(S.Vdrops[i])} V</strong>`).join('<br>')}</p>`; }
+
+  function paintPar(){ P=genParalelo(); byId('VsPar').value=P.Vs; byId('nPar').value=P.n; const cont=byId('resistoresPar'); cont.innerHTML=''; P.R.forEach((r,i)=>{ const d=document.createElement('div'); d.className='field'; d.innerHTML=`<label>R${i+1} (Ω)</label><input type="number" value="${r}" readonly>`; cont.appendChild(d); }); const currents=byId('corrientesPar'); currents.innerHTML=''; P.R.forEach((_,i)=>{ const d=document.createElement('div'); d.className='field'; d.innerHTML=`<label>I<sub>R${i+1}</sub> (A)</label><input type="number" step="any" id="Ipar${i}">`; currents.appendChild(d); }); byId('scorePar').textContent='Puntaje: —'; byId('solPar').innerHTML=''; ['ReqPar','IParTotal'].forEach(id=>{ byId(id).value=''; byId(id).classList.remove('ok','bad'); }); }
+  function revisarPar(){ const reqUsr=parseFloat(byId('ReqPar').value), itUsr=parseFloat(byId('IParTotal').value); const reqOK=withinTol(reqUsr,P.Req), itOK=withinTol(itUsr,P.Itot); byId('ReqPar').classList.toggle('ok',reqOK); byId('ReqPar').classList.toggle('bad',!reqOK); byId('IParTotal').classList.toggle('ok',itOK); byId('IParTotal').classList.toggle('bad',!itOK); let c=(reqOK?1:0)+(itOK?1:0), t=2; P.Ik.forEach((i,idx)=>{ const el=byId(`Ipar${idx}`); const u=parseFloat(el.value); const ok=withinTol(u,i); el.classList.toggle('ok',ok); el.classList.toggle('bad',!ok); if(ok) c++; t++; }); byId('scorePar').textContent=`Puntaje: ${c}/${t}`; byId('solPar').innerHTML=`<p><strong>Paso 1:</strong> 1/R_eq = Σ(1/R) → ${P.R.map(r=>`1/${r}`).join(' + ')} ⇒ R_eq = <strong>${fmt(P.Req)} Ω</strong></p><p><strong>Paso 2:</strong> I_k = V/R_k → ${P.R.map((r,i)=>`I_R${i+1} = ${P.Vs}/${r} = <strong>${fmt(P.Ik[i])} A</strong>`).join('<br>')}</p><p><strong>Paso 3:</strong> I_tot = Σ I_k = <strong>${fmt(P.Itot)} A</strong></p>`; }
+
+  function paintMix(){ M=genMixto(); byId('VsMix').value=M.Vs; byId('R1Mix').value=M.R1; byId('R2Mix').value=M.R2; byId('R3Mix').value=M.R3; ['ReqMix','IMix','V1Mix','VPmix','I2Mix','I3Mix'].forEach(id=>{ byId(id).value=''; byId(id).classList.remove('ok','bad'); }); byId('scoreMix').textContent='Puntaje: —'; byId('solMix').innerHTML=''; }
+  function revisarMix(){ const map={ReqMix:M.Req,IMix:M.I,V1Mix:M.V1,VPmix:M.Vp,I2Mix:M.I2,I3Mix:M.I3}; let c=0,t=0; Object.entries(map).forEach(([id,val])=>{ const el=byId(id); const u=parseFloat(el.value); const ok=withinTol(u,val); el.classList.toggle('ok',ok); el.classList.toggle('bad',!ok); t++; if(ok) c++; }); byId('scoreMix').textContent=`Puntaje: ${c}/${t}`; byId('solMix').innerHTML=`<p><strong>Paso 1:</strong> R_p = (1 / (1/R2 + 1/R3)) = <strong>${fmt(M.Rp)} Ω</strong></p><p><strong>Paso 2:</strong> R_eq = R1 + R_p = ${M.R1} + ${fmt(M.Rp)} = <strong>${fmt(M.Req)} Ω</strong></p><p><strong>Paso 3:</strong> I = V / R_eq = ${M.Vs} / ${fmt(M.Req)} = <strong>${fmt(M.I)} A</strong></p><p><strong>Paso 4:</strong> V_R1 = I·R1 = ${fmt(M.I)}·${M.R1} = <strong>${fmt(M.V1)} V</strong>; V_p = V - V_R1 = ${M.Vs} - ${fmt(M.V1)} = <strong>${fmt(M.Vp)} V</strong></p><p><strong>Paso 5:</strong> I_R2 = V_p/R2 = ${fmt(M.Vp)}/${M.R2} = <strong>${fmt(M.I2)} A</strong>; I_R3 = V_p/R3 = ${fmt(M.Vp)}/${M.R3} = <strong>${fmt(M.I3)} A</strong></p>`; }
+
+  // Inicializar ejercicios
+  paintSerie(); paintPar(); paintMix();
+
+  // Reemplazo de esquemas por PNG (Object URLs)
+  function hookImageInput(fileInputId, imgId, svgId){
+    const inp = byId(fileInputId), img = byId(imgId), svg = byId(svgId);
+    inp.addEventListener('change', ()=>{
+      const f = inp.files && inp.files[0];
+      if(!f) return;
+      const url = URL.createObjectURL(f);
+      img.src = url; img.style.display='block';
+      if(svg) svg.style.display='none';
+    });
+  }
+  hookImageInput('fileSerie','imgSerie','svgSerie');
+  hookImageInput('filePar','imgPar','svgPar');
+  hookImageInput('fileMix','imgMix','svgMix');
+
+  // Botones
+  byId('btnNuevoSerie').addEventListener('click', paintSerie);
+  byId('btnRevisarSerie').addEventListener('click', revisarSerie);
+  byId('btnNuevoPar').addEventListener('click', paintPar);
+  byId('btnRevisarPar').addEventListener('click', revisarPar);
+  byId('btnNuevoMix').addEventListener('click', paintMix);
+  byId('btnRevisarMix').addEventListener('click', revisarMix);
+</script>
+</body>
+</html>
